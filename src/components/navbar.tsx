@@ -105,7 +105,7 @@ export function Navbar() {
               {/* User profile */}
               <div className="flex items-center gap-2">
                 {user.image ? (
-                  <Image
+                  <img
                     src={user.image}
                     alt={user.name || "User profile"}
                     className="size-9 rounded-full border border-slate-200 object-cover"
@@ -199,7 +199,7 @@ export function Navbar() {
               <>
                 <div className="flex items-center gap-3 px-3 py-2">
                   {user.image ? (
-                    <Image
+                    <img
                       src={user.image}
                       alt={user.name || "User profile"}
                       className="size-10 rounded-full border border-slate-200 object-cover"
