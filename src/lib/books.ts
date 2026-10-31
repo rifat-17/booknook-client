@@ -27,6 +27,11 @@ export interface IBook {
   category: string;
   description: string;
   imageUrl: string;
+  addedBy?: {
+    userId: string;
+    name?: string;
+    email?: string;
+  };
 }
 
 
