@@ -19,6 +19,17 @@ import {
  * is what the API should return.
  */
 
+
+export interface IBook {
+  _id: string;
+  title: string;
+  author: string;
+  category: string;
+  description: string;
+  imageUrl: string;
+}
+
+
 export type Category = {
   /** URL-friendly identifier used as the `category` query parameter. */
   slug: string;
