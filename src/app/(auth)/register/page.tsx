@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { authClient } from "@/app/lib/auth-client";
+import { authClient } from "@/lib/auth-client";
 import { toast } from "sonner";
 import { BookOpen, Eye, EyeOff, Loader2 } from "lucide-react";
 import { redirect } from "next/navigation";
