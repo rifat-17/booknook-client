@@ -37,23 +37,23 @@ export function Hero() {
     <section className="relative overflow-hidden">
       {/* Decorative warm shape behind the composition */}
       <div
-        className="pointer-events-none absolute top-16 right-[-6rem] hidden -z-10 size-96 rounded-full bg-orange-100/70 blur-3xl lg:block"
+        className="pointer-events-none absolute top-16 right-[-6rem] -z-10 hidden size-96 rounded-full bg-orange-100/70 blur-3xl dark:bg-orange-950/30 lg:block"
         aria-hidden="true"
       />
 
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-2 lg:gap-16 lg:px-8 lg:py-24">
         {/* Copy + search */}
         <div>
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-orange-100 px-3 py-1 text-xs font-medium text-orange-700">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-orange-100 px-3 py-1 text-xs font-medium text-orange-700 dark:bg-orange-950/50 dark:text-orange-300">
             <Sparkles className="size-3.5" aria-hidden="true" />
             Your next chapter starts here
           </span>
 
-          <h1 className="mt-4 text-4xl font-semibold tracking-tight text-[#172033] sm:text-5xl">
+          <h1 className="mt-4 text-4xl font-semibold tracking-tight text-[#172033] dark:text-white sm:text-5xl">
             Discover Your Next Favorite Book.
           </h1>
 
-          <p className="mt-4 max-w-xl text-base text-slate-600 sm:text-lg">
+          <p className="mt-4 max-w-xl text-base text-slate-600 dark:text-slate-300 sm:text-lg">
             BookNook helps readers discover, explore, and borrow from a curated
             collection of fiction, science, history, and more. Find a story
             worth staying up late for.
@@ -64,7 +64,7 @@ export function Hero() {
             <div className="flex flex-col gap-2 sm:flex-row">
               <div className="relative flex-1">
                 <Search
-                  className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-slate-400"
+                  className="h-11 w-full rounded-lg border border-slate-300 bg-white pr-3 pl-9 text-sm text-[#172033] shadow-sm transition-colors duration-200 placeholder:text-slate-400 hover:border-slate-400 focus:border-orange-600 focus:ring-2 focus:ring-orange-600/30 focus:outline-none dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:placeholder:text-slate-500 dark:hover:border-slate-600"
                   aria-hidden="true"
                 />
                 <label htmlFor="hero-search" className="sr-only">
@@ -91,24 +91,24 @@ export function Hero() {
           <div className="mt-4 flex items-center gap-2">
             <Link
               href="/books"
-              className="inline-flex items-center gap-1.5 rounded-lg px-1.5 py-1 text-sm font-medium text-[#172033] underline-offset-4 transition-colors duration-200 hover:text-orange-700 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
+              className="inline-flex items-center gap-1.5 rounded-lg px-1.5 py-1 text-sm font-medium text-[#172033] underline-offset-4 transition-colors duration-200 hover:text-orange-700 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600 dark:text-slate-200 dark:hover:text-orange-400"
             >
               Explore Collection
               <ArrowRight className="size-4" aria-hidden="true" />
             </Link>
           </div>
 
-          <p className="mt-6 text-sm text-slate-500">A world of stories, one library.</p>
+          <p className="mt-6 text-sm text-slate-500 dark:text-slate-400">A world of stories, one library.</p>
         </div>
 
         {/* Book composition */}
         <div className="relative mx-auto w-full max-w-md lg:max-w-lg" aria-hidden="true">
           <div className="relative flex aspect-4/3 items-center justify-center">
             {/* Back drop */}
-            <div className="absolute inset-0 rounded-3xl bg-white shadow-sm ring-1 ring-slate-900/5" />
+            <div className="absolute inset-0 rounded-3xl bg-white shadow-sm ring-1 ring-slate-900/5 transition-colors duration-300 dark:bg-slate-900 dark:ring-white/10" />
 
             {/* Shelf line */}
-            <div className="absolute right-6 bottom-8 left-6 h-1 rounded-full bg-slate-200" />
+            <div className="absolute right-6 bottom-8 left-6 h-1 rounded-full bg-slate-200 dark:bg-slate-700" />
 
             {/* Standing books */}
             <HeroBookCover
