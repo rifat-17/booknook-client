@@ -1,6 +1,7 @@
 
 import { AllBookCard } from "@/components/books/AllBookCard";
 import { CategoryFilter } from "@/components/books/CategoryFilter";
+
 import type { IBook } from "@/lib/books";
 import { categories } from "@/lib/books";
 import type { Metadata } from "next";
@@ -72,6 +73,11 @@ const AllBooksPage = async ({ searchParams }: AllBooksPageProps) => {
                     </p>
                 </div>
 
+                <CategoryFilter
+                    categories={categories}
+                    selectedCategory={category}
+                />
+
                 {filteredBooks.length === 0 ? (
                     <p className="py-16 text-center text-slate-500">
                         No books found in this category.
@@ -82,7 +88,7 @@ const AllBooksPage = async ({ searchParams }: AllBooksPageProps) => {
                             Showing {filteredBooks.length} books
                         </p>
 
-                        
+
                         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                             {filteredBooks.map((book) => (
                                 <AllBookCard key={book._id} book={book} />
