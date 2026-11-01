@@ -6,6 +6,7 @@ import { FeatureCard } from "@/components/home/feature-card";
 import { Hero } from "@/components/home/hero";
 import { SectionHeading } from "@/components/home/section-heading";
 import { categories, featuredBooks, features } from "@/lib/books";
+import { NewArrivals } from "@/components/home/NewArrivals";
 
 export default function Home() {
   return (
@@ -35,16 +36,7 @@ export default function Home() {
         aria-labelledby="featured-heading"
         className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8"
       >
-        <SectionHeading
-          id="featured-heading"
-          title="Books Worth Discovering"
-          description="Explore a selection of books to inspire your next reading journey."
-        />
-        <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {featuredBooks.map((book) => (
-            <BookCard key={book.id} book={book} />
-          ))}
-        </div>
+        <NewArrivals/>
       </section>
 
       {/* Section 4: Why Choose BookNook? */}

@@ -28,6 +28,7 @@ export interface IBook {
   description: string;
   imageUrl: string;
   totalCopies: number;
+  createdAt: string;
 
   addedBy?: {
     userId: string;
