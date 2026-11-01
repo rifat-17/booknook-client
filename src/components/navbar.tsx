@@ -19,7 +19,7 @@ const navLinks: NavItem[] = [
   { href: "/books", label: "Explore Books" },
   { href: "/add-book", label: "Add Book" },
   { href: "/my-books", label: "My Books" },
-  { href: "/my-borrowings", label: "My Borrowings" },
+  { href: "/my-borrows", label: "My Borrows" },
 ];
 
 export function Navbar() {
