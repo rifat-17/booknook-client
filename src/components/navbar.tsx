@@ -18,6 +18,7 @@ const navLinks: NavItem[] = [
   { href: "/", label: "Home" },
   { href: "/books", label: "Explore Books" },
   { href: "/add-book", label: "Add Book" },
+  { href: "/my-books", label: "My Books" },
   { href: "/my-borrowings", label: "My Borrowings" },
 ];
 
