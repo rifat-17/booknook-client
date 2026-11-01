@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from "next/link";
@@ -6,8 +5,8 @@ import { motion } from "framer-motion";
 import type { Category } from "@/lib/books";
 
 interface CategoryFilterProps {
-  categories: Category[];
-  selectedCategory?: string;
+ categories: Pick<Category, "name" | "slug">[];
+  selectedCategory?: string;  
 }
 
 export function CategoryFilter({
@@ -44,7 +43,7 @@ export function CategoryFilter({
               className={`relative isolate block rounded-full px-5 py-2.5 text-sm font-medium transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600 ${
                 isActive
                   ? "text-white"
-                  : "text-slate-600 hover:text-orange-700 dark:text-slate-300 dark:hover:text-orange-400"
+                  : "text-slate-600 hover:text-orange-700"
               }`}
             >
               {isActive && (

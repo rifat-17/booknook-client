@@ -74,7 +74,10 @@ const AllBooksPage = async ({ searchParams }: AllBooksPageProps) => {
                 </div>
 
                 <CategoryFilter
-                    categories={categories}
+                    categories={categories.map(({ name, slug }) => ({
+                        name,
+                        slug,
+                    }))}
                     selectedCategory={category}
                 />
 

@@ -10,7 +10,7 @@ import { NewArrivals } from "@/components/home/NewArrivals";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#FAF8F3] text-[#172033] transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100">
+    <main className="min-h-screen bg-[#FAF8F3] text-[#172033]">
       {/* Section 1: Hero */}
       <Hero />
 
@@ -61,10 +61,10 @@ export default function Home() {
         aria-labelledby="cta-heading"
         className="mx-auto max-w-7xl px-4 pt-8 pb-20 sm:px-6 lg:px-8"
       >
-       <div className="rounded-3xl bg-[#172033] px-6 py-14 text-center shadow-lg transition-colors duration-300 dark:bg-slate-900 sm:px-12 sm:py-16">
+       <div className="rounded-3xl bg-[#172033] px-6 py-14 text-center shadow-lg sm:px-12 sm:py-16">
           <h2
             id="cta-heading"
-            className="text-2xl font-semibold tracking-tight text-[#FAF8F3] dark:text-white sm:text-3xl"
+            className="text-2xl font-semibold tracking-tight text-[#FAF8F3] sm:text-3xl"
           >
             Ready to Find Your Next Great Read?
           </h2>

@@ -1,19 +1,25 @@
+
 "use client";
 
 import Link from "next/link";
 import { useEffect, useId, useState } from "react";
-import { BookOpen, Loader2, LogOut, Menu, UserCircle, X } from "lucide-react";
+import {
+  BookOpen,
+  Loader2,
+  LogOut,
+  Menu,
+  UserCircle,
+  X,
+} from "lucide-react";
 import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "sonner";
-import { ThemeToggle } from "./ThemeToggle";
 
 type NavItem = {
   href: string;
   label: string;
 };
 
-// Nav and auth destinations are defined once and rendered inline below.
 const navLinks: NavItem[] = [
   { href: "/", label: "Home" },
   { href: "/books", label: "Explore Books" },
@@ -26,18 +32,13 @@ export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
 
-
-
   const panelId = useId();
   const router = useRouter();
 
-
-
   const { data: session, isPending } = authClient.useSession();
-
   const user = session?.user;
 
-  // Close the mobile menu with the Escape key.
+  // Close mobile menu with Escape key.
   useEffect(() => {
     if (!menuOpen) return;
 
@@ -72,10 +73,10 @@ export function Navbar() {
     } finally {
       setIsLoggingOut(false);
     }
-  }
+  };
 
   return (
-   <header className="sticky top-0 z-50 border-b border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950">
+    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white">
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <Link
@@ -104,12 +105,10 @@ export function Navbar() {
 
         {/* Desktop authentication */}
         <div className="hidden items-center gap-3 md:flex">
-          <ThemeToggle />
           {isPending ? (
             <Loader2 className="size-5 animate-spin text-orange-600" />
           ) : user ? (
             <>
-              {/* User profile */}
               <div className="flex items-center gap-2">
                 {user.image ? (
                   <img
@@ -126,7 +125,6 @@ export function Navbar() {
                 </span>
               </div>
 
-              {/* Sign out */}
               <button
                 type="button"
                 onClick={handleSignOut}
@@ -183,9 +181,6 @@ export function Navbar() {
           id={panelId}
           className="border-t border-slate-200 bg-white md:hidden"
         >
-          <div className="flex justify-end px-4 pt-3">
-            <ThemeToggle />
-          </div>
           <ul className="space-y-1 px-4 py-3">
             {navLinks.map((link) => (
               <li key={link.href}>
@@ -265,6 +260,5 @@ export function Navbar() {
         </div>
       )}
     </header>
-
   );
 }
