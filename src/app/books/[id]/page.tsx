@@ -107,6 +107,18 @@ const BookDetailsPage = async ({
               {book.description}
             </p>
 
+            {/* available copies */}
+            <div className="mt-6">
+              <p className="text-sm text-slate-500">
+                Available Copies
+              </p>
+
+              <p className="mt-1 text-2xl font-bold text-orange-700">
+                {book.totalCopies}
+              </p>
+            </div>
+
+
             {/* Book Creator */}
             <div className="mt-8 rounded-xl bg-white p-5 shadow-sm">
               <p className="text-sm text-slate-500">

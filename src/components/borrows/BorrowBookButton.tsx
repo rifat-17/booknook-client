@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -21,15 +20,27 @@ export default function BorrowBookButton({
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
 
+  const isAvailable = book.totalCopies > 0;
+
   return (
     <>
-      <button
-        type="button"
-        onClick={() => setIsOpen(true)}
-        className="mt-8 w-full rounded-xl bg-orange-700 px-6 py-3.5 font-semibold text-white transition hover:bg-orange-800"
-      >
-        Borrow This Book
-      </button>
+      <div className="mt-8 space-y-3">
+        <p className="text-sm font-medium text-slate-600">
+          Available Copies:{" "}
+          <span className="font-bold text-[#172033]">
+            {book.totalCopies}
+          </span>
+        </p>
+
+        <button
+          type="button"
+          disabled={!isAvailable}
+          onClick={() => setIsOpen(true)}
+          className="w-full rounded-xl bg-orange-700 px-6 py-3.5 font-semibold text-white transition hover:bg-orange-800 disabled:cursor-not-allowed disabled:bg-slate-400 disabled:hover:bg-slate-400"
+        >
+          {isAvailable ? "Borrow This Book" : "Not Available"}
+        </button>
+      </div>
 
       {isOpen && (
         <BorrowBookDialog

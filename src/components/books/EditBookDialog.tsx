@@ -43,6 +43,10 @@ const EditBookDialog = ({
 
     const [saving, setSaving] = useState(false);
 
+    const [totalCopies, setTotalCopies] = useState(
+        String(book.totalCopies)
+    );
+
     const handleChange = (event: ChangeEvent<
         HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >) => {
@@ -56,6 +60,11 @@ const EditBookDialog = ({
 
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+        
+        if (!Number.isInteger(Number(totalCopies)) || Number(totalCopies) < 1) {
+            toast.error("Total copies must be at least 1.");
+            return;
+        }
 
         try {
             setSaving(true);
@@ -76,7 +85,10 @@ const EditBookDialog = ({
                     "Content-Type": "application/json",
                     authorization: `Bearer ${token}`
                 },
-                body: JSON.stringify(formData),
+                body: JSON.stringify({
+                    ...formData,
+                    totalCopies: Number(totalCopies),
+                }),
             });
 
             const result = await response.json();
@@ -88,6 +100,7 @@ const EditBookDialog = ({
             onUpdated({
                 ...book,
                 ...formData,
+                totalCopies: Number(totalCopies),
             });
 
             toast.success("Book updated successfully!");
@@ -223,6 +236,27 @@ const EditBookDialog = ({
                             value={formData.imageUrl}
                             onChange={handleChange}
                             required
+                            className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-orange-600"
+                        />
+                    </div>
+
+                    {/* totalcopies */}
+                    <div>
+                        <label
+                            htmlFor="edit-totalCopies"
+                            className="mb-1 block text-sm font-medium"
+                        >
+                            Total Copies
+                        </label>
+
+                        <input
+                            id="edit-totalCopies"
+                            type="number"
+                            min="1"
+                            step="1"
+                            required
+                            value={totalCopies}
+                            onChange={(e) => setTotalCopies(e.target.value)}
                             className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-orange-600"
                         />
                     </div>

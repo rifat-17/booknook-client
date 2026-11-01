@@ -33,6 +33,15 @@ const BorrowBookDialog = ({
 
             const token = await getTokenFromClient();
 
+            if (!token) {
+                throw new Error("Please login to borrow this book.");
+            }
+
+
+            if (!API_URL) {
+                throw new Error("API URL is not configured.");
+            }
+
             const response = await fetch(`${API_URL}/borrows`, {
                 method: "POST",
                 headers: {
@@ -73,7 +82,9 @@ const BorrowBookDialog = ({
     return (
         <div
             className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4"
-            onClick={onClose}
+            onClick={() => {
+                if (!loading) onClose();
+            }}
         >
             <div
                 role="dialog"
@@ -131,7 +142,9 @@ const BorrowBookDialog = ({
                 <div className="mt-7 flex justify-end gap-3">
                     <button
                         type="button"
-                        onClick={onClose}
+                        onClick={() => {
+                            if (!loading) onClose();
+                        }}
                         disabled={loading}
                         className="rounded-lg border px-5 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50 disabled:opacity-50"
                     >

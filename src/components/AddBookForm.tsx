@@ -32,12 +32,19 @@ export default function AddBookForm({
   const [imageUrl, setImageUrl] = useState("");
   const [imageError, setImageError] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [totalCopies, setTotalCopies] = useState("1");
+
 
   const inputClass =
     "w-full rounded-lg border border-slate-300 px-4 py-3 text-sm outline-none transition focus:border-orange-500 focus:ring-2 focus:ring-orange-100";
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
+    if (!Number.isInteger(Number(totalCopies)) || Number(totalCopies) < 1) {
+      toast.error("Total copies must be at least 1.");
+      return;
+    }
 
     try {
       setLoading(true);
@@ -56,6 +63,7 @@ export default function AddBookForm({
           category,
           description,
           imageUrl,
+          totalCopies: Number(totalCopies),
         }),
       });
 
@@ -73,6 +81,7 @@ export default function AddBookForm({
       setDescription("");
       setImageUrl("");
       setImageError(false);
+      setTotalCopies("1");
 
       router.push("/my-books");
       router.refresh();
@@ -229,6 +238,30 @@ export default function AddBookForm({
           required
         />
       </div>
+
+
+      {/* total copies */}
+      <div>
+        <label
+          htmlFor="totalCopies"
+          className="mb-2 block text-sm font-medium"
+        >
+          Total Copies
+        </label>
+
+        <input
+          id="totalCopies"
+          type="number"
+          min="1"
+          step="1"
+          required
+          value={totalCopies}
+          onChange={(e) => setTotalCopies(e.target.value)}
+          placeholder="Enter total copies"
+          className={inputClass}
+        />
+      </div>
+
 
       {/* User Information */}
       <div className="grid gap-5 sm:grid-cols-2">
