@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { BookCard } from "@/components/home/book-card";
+
 import { CategoryCard } from "@/components/home/category-card";
 import { FeatureCard } from "@/components/home/feature-card";
 import { Hero } from "@/components/home/hero";
 import { SectionHeading } from "@/components/home/section-heading";
-import { categories, featuredBooks, features } from "@/lib/books";
+import { categories, features } from "@/lib/books";
 import { NewArrivals } from "@/components/home/NewArrivals";
 
 export default function Home() {
