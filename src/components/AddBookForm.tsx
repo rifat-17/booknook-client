@@ -9,8 +9,10 @@ import { getTokenFromClient } from "@/lib/getTokenFromClient";
 const categories = [
   "Fiction",
   "Science",
+  "Technology",
   "History",
-  "Kids",
+  "Biography",
+  "Fantasy",
   "Others",
 ];
 
