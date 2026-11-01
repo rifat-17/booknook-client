@@ -1,0 +1,63 @@
+
+"use client";
+
+import Link from "next/link";
+import { motion } from "motion/react";
+import type { Category } from "@/lib/books";
+
+interface CategoryFilterProps {
+  categories: Category[];
+  selectedCategory?: string;
+}
+
+export function CategoryFilter({
+  categories,
+  selectedCategory,
+}: CategoryFilterProps) {
+  const filters = [
+    { name: "All Books", slug: "" },
+    ...categories.map((category) => ({
+      name: category.name,
+      slug: category.slug,
+    })),
+  ];
+
+  return (
+    <div className="mb-10 flex flex-wrap gap-3">
+      {filters.map((filter) => {
+        const isActive = filter.slug === (selectedCategory ?? "");
+
+        return (
+          <Link
+            key={filter.slug || "all"}
+            href={
+              filter.slug
+                ? `/books?category=${filter.slug}`
+                : "/books"
+            }
+            aria-current={isActive ? "page" : undefined}
+            className={`relative isolate rounded-full px-5 py-2.5 text-sm font-medium transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600 ${
+              isActive
+                ? "text-white"
+                : "text-slate-600 hover:text-orange-700 dark:text-slate-300 dark:hover:text-orange-400"
+            }`}
+          >
+            {isActive && (
+              <motion.span
+                layoutId="active-category"
+                className="absolute inset-0 -z-10 rounded-full bg-orange-600"
+                transition={{
+                  type: "spring",
+                  stiffness: 380,
+                  damping: 30,
+                }}
+              />
+            )}
+
+            {filter.name}
+          </Link>
+        );
+      })}
+    </div>
+  );
+}
