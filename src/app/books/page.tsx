@@ -1,10 +1,14 @@
 import { AllBookCard } from '@/components/books/AllBookCard';
 import { IBook } from '@/lib/books';
+import { Metadata } from 'next';
 import React from 'react';
 
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
+export const metadata: Metadata = {
+  title: "All Books",
+};
 
 const getBooks = async (): Promise<IBook[]> => {
     const response = await fetch(`${API_URL}/books`, {

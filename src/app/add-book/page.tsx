@@ -3,6 +3,12 @@ import AddBookForm from "@/components/AddBookForm";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+import { Metadata } from "next";
+
+
+export const metadata: Metadata = {
+  title: "Add Book",
+};
 
 async function AddBookContent() {
   const session = await auth.api.getSession({

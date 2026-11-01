@@ -15,8 +15,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "BookNook",
-  description: "A Small Online Library",
+  title: {
+    default: "BookNook",
+    template: "BookNook | %s",
+  },
+  description: "Discover, explore, and borrow your favorite books with BookNook.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

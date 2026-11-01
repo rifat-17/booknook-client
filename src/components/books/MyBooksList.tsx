@@ -8,6 +8,7 @@ import { toast } from 'sonner';
 import MyBookCard from './MyBookCard';
 import EditBookDialog from './EditBookDialog';
 import DeleteBookDialog from './DeleteBookDialog';
+import LoadingSpinner from '../LoadingSpinner';
 
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -84,12 +85,8 @@ const MyBooksList = () => {
     };
 
     if (loading) {
-        return (
-            <div className="py-20 text-center text-slate-500">
-                Loading your books...
-            </div>
-        );
-    }
+  return <LoadingSpinner message="Loading your books..." />;
+}
 
     if (books.length === 0) {
         return (

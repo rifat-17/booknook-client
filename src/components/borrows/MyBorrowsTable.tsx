@@ -6,6 +6,7 @@ import React, { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 import ReturnBookDialog from './ReturnBookDialog';
 import Image from 'next/image';
+import LoadingSpinner from '../LoadingSpinner';
 
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -75,12 +76,10 @@ const MyBorrowsTable = () => {
     };
 
     if (loading) {
-        return (
-            <p className="py-16 text-center text-slate-500">
-                Loading your borrowed books...
-            </p>
-        );
-    }
+  return (
+    <LoadingSpinner message="Loading your borrowed books..." />
+  );
+}
 
     if (borrows.length === 0) {
         return (

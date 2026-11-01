@@ -6,8 +6,14 @@ import { headers } from "next/headers";
 import Image from "next/image";
 import { notFound, redirect } from "next/navigation";
 import BorrowBookButton from "@/components/borrows/BorrowBookButton";
+import { Metadata } from "next";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+
+export const metadata: Metadata = {
+  title: "Book Details",
+};
 
 const getBook = async (id: string): Promise<IBook> => {
   const token = await getTokenFromServer();

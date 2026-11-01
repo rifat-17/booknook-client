@@ -1,8 +1,13 @@
 import MyBooksList from '@/components/books/MyBooksList';
 import { auth } from '@/lib/auth';
+import { Metadata } from 'next';
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 import React from 'react';
+
+export const metadata: Metadata = {
+  title: "My Books",
+};
 
 const MyBooksPage = async () => {
 

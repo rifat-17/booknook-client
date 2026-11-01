@@ -1,8 +1,14 @@
 import MyBorrowsTable from '@/components/borrows/MyBorrowsTable';
 import { auth } from '@/lib/auth';
+import { Metadata } from 'next';
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 import React from 'react';
+
+
+export const metadata: Metadata = {
+  title: "My Borrows",
+};
 
 const MyBorrowsPage = async () => {
 
