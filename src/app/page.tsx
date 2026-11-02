@@ -3,16 +3,46 @@ import { ArrowRight } from "lucide-react";
 
 import { CategoryCard } from "@/components/home/category-card";
 import { FeatureCard } from "@/components/home/feature-card";
-import { Hero } from "@/components/home/hero";
-import { SectionHeading } from "@/components/home/section-heading";
-import { categories, features } from "@/lib/books";
-import { NewArrivals } from "@/components/home/NewArrivals";
 
-export default function Home() {
+import { SectionHeading } from "@/components/home/section-heading";
+import { categories, features, IBook } from "@/lib/books";
+import { NewArrivals } from "@/components/home/NewArrivals";
+import { BannerSlider } from "@/components/home/BannerSlider";
+
+
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+async function getLatestBooks(): Promise<IBook[]> {
+  if (!API_URL) {
+    throw new Error("NEXT_PUBLIC_API_URL is not configured");
+  }
+
+  const response = await fetch(`${API_URL}/latest-books`, {
+    cache: "no-store",
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch latest books");
+  }
+
+  return response.json();
+}
+
+
+
+
+
+export default async function Home() {
+
+    const books = await getLatestBooks();
+
   return (
     <main className="min-h-screen bg-[#FAF8F3] text-[#172033]">
-      {/* Section 1: Hero */}
-      <Hero />
+
+
+      {/* Section 1: Banner Slider */}
+      <BannerSlider books={books}/>
 
       {/* Section 2: Browse Categories */}
       <section
@@ -36,7 +66,7 @@ export default function Home() {
         aria-labelledby="featured-heading"
         className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8"
       >
-        <NewArrivals/>
+        <NewArrivals />
       </section>
 
       {/* Section 4: Why Choose BookNook? */}
@@ -61,7 +91,7 @@ export default function Home() {
         aria-labelledby="cta-heading"
         className="mx-auto max-w-7xl px-4 pt-8 pb-20 sm:px-6 lg:px-8"
       >
-       <div className="rounded-3xl bg-[#172033] px-6 py-14 text-center shadow-lg sm:px-12 sm:py-16">
+        <div className="rounded-3xl bg-[#172033] px-6 py-14 text-center shadow-lg sm:px-12 sm:py-16">
           <h2
             id="cta-heading"
             className="text-2xl font-semibold tracking-tight text-[#FAF8F3] sm:text-3xl"
