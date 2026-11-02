@@ -35,14 +35,14 @@ async function getLatestBooks(): Promise<IBook[]> {
 
 export default async function Home() {
 
-    const books = await getLatestBooks();
+  const books = await getLatestBooks();
 
   return (
     <main className="min-h-screen bg-[#FAF8F3] text-[#172033]">
 
 
       {/* Section 1: Banner Slider */}
-      <BannerSlider books={books}/>
+      <BannerSlider books={books} />
 
       {/* Section 2: Browse Categories */}
       <section
@@ -62,12 +62,11 @@ export default async function Home() {
       </section>
 
       {/* Section 3: Featured Books */}
-      <section
-        aria-labelledby="featured-heading"
-        className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8"
-      >
-        <NewArrivals />
-      </section>
+
+
+
+      <NewArrivals books={books} />
+
 
       {/* Section 4: Why Choose BookNook? */}
       <section
