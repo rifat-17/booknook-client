@@ -1,19 +1,19 @@
 
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Lora, DM_Sans } from "next/font/google";
 import { Navbar } from "@/components/navbar";
 import "./globals.css";
 import { Toaster } from "sonner";
 import { Footer } from "@/components/Footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+export const lora = Lora({
   subsets: ["latin"],
+  variable: "--font-lora",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+export const dmSans = DM_Sans({
   subsets: ["latin"],
+  variable: "--font-dm-sans",
 });
 
 export const metadata: Metadata = {
@@ -29,7 +29,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${lora.variable} ${dmSans.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
         <Navbar />
