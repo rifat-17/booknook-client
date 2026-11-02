@@ -5,10 +5,12 @@ import Link from "next/link";
 import { useEffect, useId, useState } from "react";
 import {
   BookOpen,
+  ChevronDown,
   Loader2,
   LogOut,
   Menu,
   UserCircle,
+  UserRound,
   X,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -108,37 +110,65 @@ export function Navbar() {
           {isPending ? (
             <Loader2 className="size-5 animate-spin text-orange-600" />
           ) : user ? (
-            <>
-              <div className="flex items-center gap-2">
+            <details className="group relative">
+              {/* Profile photo trigger */}
+              <summary
+                aria-label="Open user profile menu"
+                className="flex cursor-pointer list-none items-center gap-2 rounded-full p-1 transition-colors hover:bg-orange-50 [&::-webkit-details-marker]:hidden"
+              >
                 {user.image ? (
                   <img
                     src={user.image}
                     alt={user.name || "User profile"}
-                    className="size-9 rounded-full border border-slate-200 object-cover"
+                    className="size-10 rounded-full border border-slate-200 object-cover"
                   />
                 ) : (
-                  <UserCircle className="size-9 text-slate-500" />
+                  <div className="flex size-10 items-center justify-center rounded-full bg-orange-100 text-orange-700">
+                    <UserCircle className="size-7" />
+                  </div>
                 )}
 
-                <span className="max-w-28 truncate text-sm font-medium text-slate-700">
-                  {user.name}
-                </span>
+                <ChevronDown className="size-4 text-slate-500 transition-transform group-open:rotate-180" />
+              </summary>
+
+              {/* Profile dropdown */}
+              <div className="absolute right-0 top-full z-50 mt-3 w-64 rounded-xl border border-slate-200 bg-white p-3 shadow-lg">
+                {/* User information */}
+                <div className="border-b border-slate-100 px-2 pb-3">
+                  <p className="truncate text-sm font-semibold text-slate-900">
+                    {user.name || "User"}
+                  </p>
+
+                  <p className="truncate text-xs text-slate-500">
+                    {user.email}
+                  </p>
+                </div>
+
+                {/* My Profile */}
+                <Link
+                  href="/profile"
+                  className="mt-2 flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:bg-orange-50 hover:text-orange-700"
+                >
+                  <UserRound className="size-4" />
+                  My Profile
+                </Link>
+
+                {/* Logout */}
+                <button
+                  type="button"
+                  onClick={handleSignOut}
+                  disabled={isLoggingOut}
+                  className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-red-600 transition-colors hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  {isLoggingOut ? (
+                    <Loader2 className="size-4 animate-spin" />
+                  ) : (
+                    <LogOut className="size-4" />
+                  )}
+                  {isLoggingOut ? "Signing out..." : "Logout"}
+                </button>
               </div>
-
-              <button
-                type="button"
-                onClick={handleSignOut}
-                disabled={isLoggingOut}
-                className="inline-flex items-center gap-2 rounded-lg border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50 disabled:opacity-60"
-              >
-                {isLoggingOut ? (
-                  <Loader2 className="size-4 animate-spin" />
-                ) : (
-                  <LogOut className="size-4" />
-                )}
-                Sign Out
-              </button>
-            </>
+            </details>
           ) : (
             <>
               <Link
@@ -164,7 +194,9 @@ export function Navbar() {
           className="inline-flex size-10 items-center justify-center rounded-md text-slate-900 transition-colors duration-200 hover:bg-orange-50 hover:text-orange-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600 md:hidden"
           aria-expanded={menuOpen}
           aria-controls={panelId}
-          aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-label={
+            menuOpen ? "Close navigation menu" : "Open navigation menu"
+          }
           onClick={() => setMenuOpen((open) => !open)}
         >
           {menuOpen ? (
@@ -202,6 +234,7 @@ export function Navbar() {
               </div>
             ) : user ? (
               <>
+                {/* Mobile user information */}
                 <div className="flex items-center gap-3 px-3 py-2">
                   {user.image ? (
                     <img
@@ -215,26 +248,38 @@ export function Navbar() {
 
                   <div className="min-w-0">
                     <p className="truncate text-sm font-semibold text-slate-800">
-                      {user.name}
+                      {user.name || "User"}
                     </p>
+
                     <p className="truncate text-xs text-slate-500">
                       {user.email}
                     </p>
                   </div>
                 </div>
 
+                {/* Mobile My Profile */}
+                <Link
+                  href="/profile"
+                  onClick={() => setMenuOpen(false)}
+                  className="flex w-full items-center gap-2 rounded-lg px-3 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:bg-orange-50 hover:text-orange-700"
+                >
+                  <UserRound className="size-4" />
+                  My Profile
+                </Link>
+
+                {/* Mobile Logout */}
                 <button
                   type="button"
                   onClick={handleSignOut}
                   disabled={isLoggingOut}
-                  className="flex w-full items-center justify-center gap-2 rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50 disabled:opacity-60"
+                  className="flex w-full items-center justify-center gap-2 rounded-lg border border-slate-300 px-4 py-2.5 text-sm font-medium text-red-600 transition-colors hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {isLoggingOut ? (
                     <Loader2 className="size-4 animate-spin" />
                   ) : (
                     <LogOut className="size-4" />
                   )}
-                  Sign Out
+                  {isLoggingOut ? "Signing out..." : "Logout"}
                 </button>
               </>
             ) : (
